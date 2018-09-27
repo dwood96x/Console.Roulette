@@ -35,7 +35,7 @@ namespace RouletteConsoleApp
         DONE 1. Numbers: the number of the bin
         DONE 2. Evens/Odds: even or odd numbers
         DONE 3. Reds/Blacks: red or black colored numbers
-        4. Lows/Highs: low (1 { 18) or high (19 { 38) numbers.
+        DONE 4. Lows/Highs: low (1 { 18) or high (19 { 38) numbers.
         5. Dozens: row thirds, 1 { 12, 13 { 24, 25 { 36
         6. Columns: rst, second, or third columns
         7. Street: rows, e.g., 1/2/3 or 22/23/24
@@ -68,8 +68,14 @@ namespace RouletteConsoleApp
             {
                 Console.WriteLine("If you placed a bet on blacks, you won 1:1 payout");
             }
-
-
+            if (rollednumber <= 18 && rollednumber > 0)
+            {
+                Console.WriteLine("If you placed a bet on lows, you won 1:1 payout");
+            }
+            else if (rollednumber > 18)
+            {
+                Console.WriteLine("If you placed a bet on highs, you won 1:1 payout");
+            }
         }
     }
 }
