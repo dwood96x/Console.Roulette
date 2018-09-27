@@ -46,7 +46,7 @@ namespace RouletteConsoleApp
         DONE 4. Lows/Highs: low (1 { 18) or high (19 { 38) numbers.
         DONE 5. Dozens: row thirds, 1 { 12, 13 { 24, 25 { 36
         DONE 6. Columns: rst, second, or third columns
-        7. Street: rows, e.g., 1/2/3 or 22/23/24
+        DONE 7. Street: rows, e.g., 1/2/3 or 22/23/24
         8. 6 Numbers: double rows, e.g., 1/2/3/4/5/6 or 22/23/24/25/26/26
         9. Split: at the edge of any two contiguous numbers, e.g., 1/2, 11/14, and 35/36
         10. Corner: at the intersection of any four contiguous numbers, e.g., 1/2/4/5, or 23/24/26/27
@@ -111,8 +111,16 @@ namespace RouletteConsoleApp
                 {
                     Console.WriteLine("If you placed a bet on the top column, you won 2:1 payout");
                 }
-
+                if (rollednumber % 3 == 0)
+                {
+                    Console.WriteLine($"If you placed a bet on the {rollednumber - 2}-{rollednumber} street, you won 11:1");
+                }
+                else
+                {
+                    Console.WriteLine($"If you placed a bet on the {(rollednumber / 3) * 3 + 1}-{((rollednumber / 3) * 3) + 3} street, you won 11:1");
+                }
             }
+            Console.ReadLine();
         }
     }
 }
