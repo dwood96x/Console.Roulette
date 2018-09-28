@@ -47,7 +47,7 @@ namespace RouletteConsoleApp
         DONE 5. Dozens: row thirds, 1 { 12, 13 { 24, 25 { 36
         DONE 6. Columns: rst, second, or third columns
         DONE 7. Street: rows, e.g., 1/2/3 or 22/23/24
-        8. 6 Numbers: double rows, e.g., 1/2/3/4/5/6 or 22/23/24/25/26/26
+        DONE 8. 6 Numbers: double rows, e.g., 1/2/3/4/5/6 or 22/23/24/25/26/26
         9. Split: at the edge of any two contiguous numbers, e.g., 1/2, 11/14, and 35/36
         10. Corner: at the intersection of any four contiguous numbers, e.g., 1/2/4/5, or 23/24/26/27
          */
@@ -118,6 +118,30 @@ namespace RouletteConsoleApp
                 else
                 {
                     Console.WriteLine($"If you placed a bet on the {(rollednumber / 3) * 3 + 1}-{((rollednumber / 3) * 3) + 3} street, you won 11:1");
+                }
+                if (rollednumber % 3 == 0)
+                {
+                    if (rollednumber < 4)
+                    {
+                        Console.WriteLine($"If you placed a bet on the {rollednumber - 2}-{rollednumber + 3} double row, you won 11:1");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"If you placed a bet on the {rollednumber - 5}-{rollednumber} double row, you won 11:1");
+                        Console.WriteLine($"If you placed a bet on the {rollednumber - 2}-{rollednumber + 3} double row, you won 11:1");
+                    }
+                }
+                else
+                {
+                    if (rollednumber < 4)
+                    {
+                        Console.WriteLine($"If you placed a bet on the {((rollednumber / 3) * 3) + 1}-{((rollednumber / 3) * 3) + 6} double row, you won 11:1");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"If you placed a bet on the {((rollednumber / 3) * 3) - 2}-{((rollednumber / 3) * 3) + 3} double row, you won 11:1");
+                        Console.WriteLine($"If you placed a bet on the {((rollednumber / 3) * 3) + 1}-{((rollednumber / 3) * 3) + 6} double row, you won 11:1");
+                    }
                 }
             }
             Console.ReadLine();
