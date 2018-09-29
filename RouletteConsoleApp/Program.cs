@@ -28,6 +28,7 @@ namespace RouletteConsoleApp
         {
             Console.WriteLine("Welcome to David's Roulette game!");
             Console.WriteLine("Go ahead and place your bets. \nThe wheel will spin when you press enter.");
+            Console.ReadLine();
         }
     }
     class RouletteLogic
@@ -36,7 +37,7 @@ namespace RouletteConsoleApp
         {
             Random rng = new Random();
             int result = rng.Next(Wheel.Min(), Wheel.Max());
-            Console.WriteLine($"\nThe wheel landed on {result}");
+            Console.WriteLine($"\nThe wheel landed on {result}!");
             return result;
         }
         /*
@@ -49,12 +50,13 @@ namespace RouletteConsoleApp
         DONE 7. Street: rows, e.g., 1/2/3 or 22/23/24
         DONE 8. 6 Numbers: double rows, e.g., 1/2/3/4/5/6 or 22/23/24/25/26/26
         DONE 9. Split: at the edge of any two contiguous numbers, e.g., 1/2, 11/14, and 35/36
-        10. Corner: at the intersection of any four contiguous numbers, e.g., 1/2/4/5, or 23/24/26/27
+        DONE 10. Corner: at the intersection of any four contiguous numbers, e.g., 1/2/4/5, or 23/24/26/27
         TODO: Do more bets involving 0 and 00
-        TODO: Clean code up. Combined console writelines.
+        TODO: Clean code up. Combine console writelines.
          */
         public void WinningBets(int rollednumber)
         {
+            // This method displays all of the possible winning bets based of the number chosen by the wheel.
             if (rollednumber == -1 || rollednumber == 0)
             {
                 if (rollednumber == 0)
@@ -69,7 +71,6 @@ namespace RouletteConsoleApp
             else
             {
                 Console.WriteLine($"If you placed a bet on {rollednumber}, 35:1 payout!");
-                // TODO : Figure out if 00 or 0 gives a odd or even
                 if (rollednumber % 2 == 0)
                 {
                     Console.WriteLine("If you placed a bet on evens, you won 1:1 payout.");
@@ -167,7 +168,44 @@ namespace RouletteConsoleApp
                 }
                 if (rollednumber < 4)
                 {
-                    Console.WriteLine($"If you placed a corner bet on {rollednumber},{rollednumber},{rollednumber},{rollednumber}, you won 8:1 payout.");
+                    if (rollednumber == 1)
+                    {
+                        Console.WriteLine($"If you placed a corner bet on 1, 2, 4, and 5, you won 8:1 payout.");
+
+                    }
+                    else if (rollednumber == 2)
+                    {
+                        Console.WriteLine($"If you placed a corner bet on 1, 2, 4, and 5, you won 8:1 payout.");
+                        Console.WriteLine($"If you placed a corner bet on 2, 3, 5 and 6, you won 8:1 payout.");
+                    }
+                    else if (rollednumber == 3)
+                    {
+                        Console.WriteLine($"If you placed a corner bet on 2, 3, 5 and 6, you won 8:1 payout.");
+
+                    }
+                }
+                else if (rollednumber > 33)
+                {
+                    if (rollednumber == 34)
+                    {
+                        Console.WriteLine($"If you placed a corner bet on 31, 32 ,34, and 35, you won 8:1 payout.");
+
+                    }
+                    else if (rollednumber == 35)
+                    {
+                        Console.WriteLine($"If you placed a corner bet on 31, 32, 34, and 35, you won 8:1 payout.");
+                        Console.WriteLine($"If you placed a corner bet on 32, 33, 35 and 36, you won 8:1 payout.");
+                    }
+                    else if (rollednumber == 36)
+                    {
+                        Console.WriteLine($"If you placed a corner bet on 32, 33, 35 and 36, you won 8:1 payout.");
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"If you placed a corner bet on {rollednumber - 3},{rollednumber - 2},{rollednumber},{rollednumber + 1}, you won 8:1 payout.");
+                    Console.WriteLine($"If you placed a corner bet on {rollednumber},{rollednumber + 1},{rollednumber + 3},{rollednumber + 4}, you won 8:1 payout.");
                 }
             }
             Console.ReadLine();
